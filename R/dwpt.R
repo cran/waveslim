@@ -121,7 +121,7 @@ ortho.basis <- function(xtree) {
     for(j in i:J) {
       if(i == 2) X[[j]] <- xtree[rep(1:J, 2^(1:J)) == j]
         X[[j]] <- X[[j]] + 2 * c(apply(matrix(xtree[rep(1:J, 2^(1:J)) == i-1]),
-          1, rep, 2^(j-i+1)))
+                                       1, rep, 2^(j-i+1)))
     }
   }
   X[[J]][X[[J]] == 0] <- 1
@@ -338,3 +338,4 @@ portmanteau.test <- function(y, p = 0.05, type = "Box-Pierce")
   }
   return(test)
 }
+

@@ -50,3 +50,4 @@ fdp.mle <- function(y, wf, J=log(length(y),2))
 
   list(parameters=c(result$minimum, sigma2), objective=result$objective)
 }
+
