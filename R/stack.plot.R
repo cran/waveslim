@@ -1,4 +1,4 @@
-stackPlot <-
+stack.plot <-
   function (x, plot.type = c("multiple", "single"), panel = lines, 
     log = "", col = par("col"), bg = NA, pch = par("pch"), cex = par("cex"),
     lty = par("lty"), lwd = par("lwd"), ann = par("ann"), xlab = "Time",

@@ -6,12 +6,13 @@ rotcumvar <- function(x) {
   pmax(abs(plus), abs(minus))
 }
 
-testing.hov <- function(x, wf, J, min.coef=128, debug=FALSE) {
+testing.hov <- function(x, wf, J, min.coef=128, debug=TRUE)
+{
   n <- length(x)
   change.points <- NULL
 
   x.dwt <- dwt(x, wf, J)
-  x.dwt.bw <- brick.wall(x.dwt, wf, method="dwt") 
+  x.dwt.bw <- brick.wall(x.dwt, wf, wt="dwt") 
   x.modwt <- modwt(x, wf, J)
   x.modwt.bw <- brick.wall(x.modwt, wf)
 

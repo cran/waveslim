@@ -6,7 +6,7 @@
   R function in order to compute discrete prolate spheroidal 
   sequences (dpss).
 }
-\usage{dpss.taper(n, k, nw = 4, nmax = 2^(ceiling(log(n, 2))))
+\usage{dpss.taper(n, k, nw = 4, nmax = 2048)
 }
 \arguments{
   \item{n}{length of data taper(s)}

@@ -2,7 +2,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <math.h>
-#include "dwt.h"
 
 /***************************************************************************
  ***************************************************************************
@@ -15,14 +14,14 @@ void two_D_dwt(double *X, int *M, int *N, int *L, double *h, double *g,
 {
   int i, j, k;
   double *data, *Wout, *Vout, *Low, *High;
-  
+
   /*
    *  Perform one-dimensional DWT on columns (length M).
    */
-  
+
   Wout = (double *) malloc((*M) * sizeof(double));
   Vout = (double *) malloc((*M) * sizeof(double));
-  
+
   /*
    *  Create temporary "matrices" to store DWT of columns.
    */
@@ -50,17 +49,17 @@ void two_D_dwt(double *X, int *M, int *N, int *L, double *h, double *g,
     }
     free(data);
   }
-  
+
   free(Wout);
   free(Vout);
-  
+
   /*
    *  Perform one-dimensional DWT on rows (length N).
    */
-  
+
   Wout = (double *) malloc((*N) * sizeof(double));
   Vout = (double *) malloc((*N) * sizeof(double));
-  
+
   for(i = 0; i < (int) *M/2; i++) {
     /*
      *  Must take row from "Low" and place into vector for DWT.
@@ -81,7 +80,7 @@ void two_D_dwt(double *X, int *M, int *N, int *L, double *h, double *g,
 	 printf("LH[%d][%d] = %f\n", i, k, HL[i+k*(*N/2)]); */
     }
     free(data);
-    
+
     /*
      *  Must take row from "High" and place into vector for DWT.
      */
@@ -102,7 +101,7 @@ void two_D_dwt(double *X, int *M, int *N, int *L, double *h, double *g,
     }
     free(data);
   }
-  
+
   free(Wout);
   free(Vout);
   free(Low);
@@ -114,7 +113,7 @@ void two_D_dwt(double *X, int *M, int *N, int *L, double *h, double *g,
    printdvec()
  ***************************************************************************
  ***************************************************************************/
-/*
+
 void printdvec(double *v, int n)
 { 
   int i;
@@ -123,7 +122,7 @@ void printdvec(double *v, int n)
     printf("%f ", v[i]);
   printf("\n");
 }
-*/
+
 /***************************************************************************
  ***************************************************************************
    2D iDWT
@@ -134,14 +133,12 @@ void two_D_idwt(double *LL, double *LH, double *HL, double *HH, int *M,
 		int *N, int *L, double *h, double *g, double *image)
 {
   int i, j, k;
-  /*
   int debug = 0;
-  */
   double *Win, *Vin, *Low, *High, *Xout;
-  
+
   Low = (double *) malloc((*M)*2*(*N) * sizeof(double));
   High = (double *) malloc((*M)*2*(*N) * sizeof(double));
-  
+
   Win = (double *) malloc((*N) * sizeof(double));
   Vin = (double *) malloc((*N) * sizeof(double));
   Xout = (double *) malloc(2*(*N) * sizeof(double));
@@ -159,9 +156,10 @@ void two_D_idwt(double *LL, double *LH, double *HL, double *HH, int *M,
     
     for(k = 0; k < 2*(*N); k++) {
       Low[i+k*(*M)] = Xout[k];
-      /* if(debug) printf("Low[%d][%d] = %f\n", k, i, Low[i+k*(*M)]); */
+      if(debug)
+	printf("Low[%d][%d] = %f\n", k, i, Low[i+k*(*M)]);
     }
-    
+
     /*
      *  Must take row from LH and HH and place into vectors for iDWT.
      */
@@ -169,24 +167,25 @@ void two_D_idwt(double *LL, double *LH, double *HL, double *HH, int *M,
       Win[j] = HH[i+j*(*M)];
       Vin[j] = LH[i+j*(*M)];
     }
-    
+
     idwt(Win, Vin, N, L, h, g, Xout);
-    
+
     for(k = 0; k < 2*(*N); k++) {
       High[i+k*(*M)] = Xout[k];
-      /* if(debug) printf("High[%d][%d] = %f\n", k, i, High[i+k*(*M)]); */
+      if(debug) 
+	printf("High[%d][%d] = %f\n", k, i, High[i+k*(*M)]);
     }
-    
+
   }
-  
+
   free(Vin);
   free(Win);
   free(Xout);
-  
+
   Vin = (double *) malloc((*M) * sizeof(double));
   Win = (double *) malloc((*M) * sizeof(double));
   Xout = (double *) malloc(2*(*M) * sizeof(double));
-  
+
   for(i = 0; i < 2*(*N); i++) {
     /*
      *  Must take columns from High and Low and place into vectors for iDWT.
@@ -195,13 +194,13 @@ void two_D_idwt(double *LL, double *LH, double *HL, double *HH, int *M,
       Vin[k] = Low[i*(*M)+k];
       Win[k] = High[i*(*M)+k];
     }
-    
+
     idwt(Win, Vin, M, L, h, g, Xout);
-    
+
     for(j = 0; j < 2*(*M); j++) 
       image[i*2*(*M)+j] = Xout[j];
   }
-  
+
   free(Vin);
   free(Win);
   free(Xout);
@@ -219,18 +218,16 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
 		 double *g, double *LL, double *LH, double *HL, double *HH)
 {
   int i, j, k, index;
-  /*
   int debug = 0;
-  */
   double *data, *Wout, *Vout, *Low, *High;
-  
+
   /*
    *  Perform one-dimensional MODWT on columns (length M).
    */
-  
+
   Wout = (double *) malloc((*M) * sizeof(double));
   Vout = (double *) malloc((*M) * sizeof(double));
-  
+
   /*
    *  Create temporary "matrices" to store MODWT of columns.
    */
@@ -243,40 +240,37 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
      */
     data = (double *) malloc((*M) * sizeof(double));
     for(j = 0; j < *M; j++) {
-      /* index = i * (*N) + j; */
-      index = i * (*M) + j;
+      index = i * (*N) + j;
       data[j] = X[index];
-      /* if(debug) printf("X[%d][%d] = %f\n", i, j, X[index]); */
+      if(debug)
+	printf("X[%d][%d] = %f\n", i, j, X[index]);
     }
     /*
      *  Perform MODWT and read into temporary matrices.
      */
     modwt(data, M, J, L, h, g, Wout, Vout);
     for(k = 0; k < *M; k++) {
-      /* index = i * (*N) + k; */
-      index = i * (*M) + k;
+      index = i * (*N) + k;
       Low[index] = Vout[k]; 
       High[index] = Wout[k];
-      /*
-       *	if(debug) {
-       *	printf("Low[%d][%d] = %f\n", i, k, Low[index]);
-       *	printf("High[%d][%d] = %f\n", i, k, High[index]);
-       *        }
-       */
+      if(debug) {
+	printf("Low[%d][%d] = %f\n", i, k, Low[index]);
+	printf("High[%d][%d] = %f\n", i, k, High[index]);
+      }
     }
     free(data);
   }
-  
+
   free(Wout);
   free(Vout);
-  
+
   /*
    *  Perform one-dimensional MODWT on rows (length N).
    */
-  
+
   Wout = (double *) malloc((*N) * sizeof(double));
   Vout = (double *) malloc((*N) * sizeof(double));
-  
+
   for(i = 0; i < *M; i++) {
     /*
      *  Must take row from "Low" and place into vector for DWT.
@@ -285,7 +279,8 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
     for(j = 0; j < *N; j++) {
       index = i + j * (*M);
       data[j] = Low[index];
-      /* if(debug) printf("Low[%d][%d] = %f\n", i, j, Low[index]); */
+      if(debug)
+	printf("Low[%d][%d] = %f\n", i, j, Low[index]);
     }
     /*
      *  Perform MODWT and read into final "Low" matrices.
@@ -295,12 +290,10 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
       index = i + k * (*M);
       LL[index] = Vout[k]; 
       LH[index] = Wout[k];
-      /*
-       *	if(debug) {
-       *	printf("LL[%d][%d] = %f\n", i, k, LL[index]);
-       *	printf("LH[%d][%d] = %f\n", i, k, LH[index]);
-       *        }
-       */
+      if(debug) {
+	printf("LL[%d][%d] = %f\n", i, k, LL[index]);
+	printf("LH[%d][%d] = %f\n", i, k, LH[index]);
+      }
     }
     free(data);
 
@@ -311,9 +304,10 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
     for(j = 0; j < *N; j++) {
       index = i + j * (*M);
       data[j] = High[index];
-      /* if(debug) printf("High[%d][%d] = %f\n", j, i, High[index]); */
+      if(debug)
+	printf("High[%d][%d] = %f\n", j, i, High[index]);
     }
-    /* 
+    /*
      *  Perform MODWT and read into final "High" matrices.
      */
     modwt(data, N, J, L, h, g, Wout, Vout);
@@ -321,16 +315,14 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
       index = i + k * (*M);
       HL[index] = Vout[k]; 
       HH[index] = Wout[k];
-      /* 
-       *	 if(debug) {
-       *	 printf("HL[%d][%d] = %f\n", i, k, HL[index]);
-       *	 printf("HH[%d][%d] = %f\n", i, k, HH[index]);
-       *         }
-       */
+      if(debug) {
+	printf("HL[%d][%d] = %f\n", i, k, HL[index]);
+	printf("HH[%d][%d] = %f\n", i, k, HH[index]);
+      }
     }
     free(data);
   }
-  
+
   free(Wout);
   free(Vout);
   free(Low);
@@ -404,8 +396,7 @@ void two_D_imodwt(double *LL, double *LH, double *HL, double *HH, int *M,
      *  Must take columns from High and Low and place into vectors for iMODWT.
      */
     for(k = 0; k < *M; k++) {
-      /* index = i * (*N) + k; */
-      index = i * (*M) + k;
+      index = i * (*N) + k;
       Vin[k] = Low[index];
       Win[k] = High[index];
     }
@@ -413,8 +404,7 @@ void two_D_imodwt(double *LL, double *LH, double *HL, double *HH, int *M,
     imodwt(Win, Vin, M, J, L, h, g, Xout);
 
     for(j = 0; j < *M; j++) {
-      /* index = i * (*N) + j; */
-      index = i * (*M) + j;
+      index = i * (*N) + j;
       image[index] = Xout[j];
     }
   }

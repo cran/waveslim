@@ -33,8 +33,7 @@ fdp.mle <- function(y, wf, J=log(length(y),2))
   y.dwt <- as.vector(unlist(dwt(y, wf, n.levels=J)))
 
   ## Compute MLE of d (limited to stationary region)
-  result <- optimize(fdpML, interval=c(-0.5,0.5), maximum=FALSE,
-                     y=list(y.dwt, n, J))
+  result <- optimize(fdpML, int=c(-0.5,0.5), max=FALSE, y=list(y.dwt, n, J))
 
   ## Compute MLE of sigma_epsilon^2
   a <- c(1/2^c(1:J+1), 0)
@@ -51,4 +50,3 @@ fdp.mle <- function(y, wf, J=log(length(y),2))
 
   list(parameters=c(result$minimum, sigma2), objective=result$objective)
 }
-
