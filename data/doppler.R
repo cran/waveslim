@@ -1,1 +1,1 @@
-doppler <- ts(scan("doppler.txt"))
+doppler <- ts(scan("doppler.txt", quiet=TRUE))

@@ -1,1 +1,1 @@
-xbox <- matrix(scan("xbox.txt"), 128, 128)
+xbox <- matrix(scan("xbox.txt", quiet=TRUE), 128, 128)

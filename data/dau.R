@@ -1,1 +1,1 @@
-dau <- matrix(scan("dau.txt"), 256, 256)
+dau <- matrix(scan("dau.txt", quiet=TRUE), 256, 256)

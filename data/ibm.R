@@ -1,1 +1,1 @@
-ibm <- ts(scan("ibm.txt"))
+ibm <- ts(scan("ibm.txt", quiet=TRUE))

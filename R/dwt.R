@@ -174,10 +174,12 @@ phase.shift <- function(z, wf, inv=FALSE)
   if(!inv) {
     for(j in 1:J) {
       ph <- round(2^(j-1) * (coe(g) + coe(h)) - coe(g), 0)
+      print(ph)
       Nj <- length(z[[j]])
       z[[j]] <- c(z[[j]][(ph+1):Nj], z[[j]][1:ph])
     }
     ph <- round((2^J-1) * coe(g), 0)
+    print(ph)
     J <- J + 1
     z[[J]] <- c(z[[J]][(ph+1):Nj], z[[J]][1:ph])
   } else {

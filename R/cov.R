@@ -233,7 +233,7 @@ spin.correlation <- function(x, y, lag.max = NA)
   xx <- zz <- x[!is.na(x)]
   yy <- y[!is.na(y)]
   n.length <- length(xx)
-  xx.length <- min(length(xx)-1, lag.max, na.rm=T)
+  xx.length <- min(length(xx)-1, lag.max, na.rm=TRUE)
   xx.var <- mean(xx^2)
   yy.var <- mean(yy^2)
 

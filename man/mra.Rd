@@ -31,7 +31,6 @@
   \item{S?}{Wavelet smooth  vector.}
   \item{wavelet}{Name of the wavelet filter used.}
   \item{boundary}{How the boundaries were handled.}
-
 }
 \details{
   This code implements a one-dimensional multiresolution analysis

@@ -138,7 +138,7 @@ ortho.basis <- function(xtree) {
 ##  invisible()
 ##}
 
-phase.shift.packet <- function(z, wf, inv=F)
+phase.shift.packet <- function(z, wf, inv=FALSE)
 {
   ## Center of energy
   coe <- function(g)

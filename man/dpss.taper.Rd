@@ -28,7 +28,7 @@
   widely used and appreciated in scientific research.  It produces direct
   spectral estimates with more than 2 df at each Fourier frequency,
   resulting in spectral estimators with reduced variance.  Computation of
-  the orthogonal tapers from the basic defining equation is difficulTRUE,
+  the orthogonal tapers from the basic defining equation is difficult,
   however, due to the instability of the calculations -- the eigenproblem
   is very poorly conditioned.  In this article the severe numerical
   instability problems are illustrated and then a technique for stable
@@ -43,7 +43,7 @@
   B. Bell, D. B. Percival, and A. T. Walden (1993)
   Calculating Thomson's spectral multitapers by inverse iteration,
   \emph{Journal of Computational and Graphical Statistics},
-  \bold{2}, No. 1, ??-??.
+  \bold{2}, No. 1, 119-130.
 
   Percival, D. B. and A. T. Walden (1993)
   \emph{Spectral Estimation for Physical Applications: Multitaper and

@@ -1,1 +1,1 @@
-jumpsine <- ts(scan("jumpsine.txt"))
+jumpsine <- ts(scan("jumpsine.txt", quiet=TRUE))

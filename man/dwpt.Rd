@@ -48,10 +48,10 @@ modwpt(x, wf = "la8", n.levels = 4, boundary = "periodic")
 }
 \details{
   The code implements the one-dimensional DWPT using the pyramid
-  algorithm (MallaTRUE, 1989).
+  algorithm (Mallat, 1989).
 }
 \references{
-  MallaTRUE, S. G. (1989)
+  Mallat, S. G. (1989)
   A theory for multiresolution signal decomposition: the wavelet
   representation,
   \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence},

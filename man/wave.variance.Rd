@@ -27,7 +27,11 @@ wave.correlation(x, y, N, p=0.975)
   the confidence interval.
 }
 \details{
-  
+  The time-independent wavelet variance is basically the average of the
+  squared wavelet coefficients across each scale.  As shown in Percival
+  (1995), the wavelet variance is a scale-by-scale decomposition of the
+  variance for a stationary process, and certain non-stationary
+  processes.
 }
 \references{
   Gencay, R., F. Selcuk and B. Whitcher (2001)

@@ -1,1 +1,1 @@
-heavisine <- ts(scan("heavisine.txt"))
+heavisine <- ts(scan("heavisine.txt", quiet=TRUE))

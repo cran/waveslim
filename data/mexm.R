@@ -1,1 +1,1 @@
-mexm <- ts(scan("mexm.txt"), start=1957, freq=12)
+mexm <- ts(scan("mexm.txt", quiet=TRUE), start=1957, freq=12)

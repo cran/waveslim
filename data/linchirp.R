@@ -1,1 +1,1 @@
-linchirp <- ts(scan("linchirp.txt"))
+linchirp <- ts(scan("linchirp.txt", quiet=TRUE))

@@ -1,1 +1,1 @@
-blocks <- ts(scan("blocks.txt"))
+blocks <- ts(scan("blocks.txt", quiet=TRUE))

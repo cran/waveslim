@@ -1,4 +1,5 @@
 \name{Thresholding}
+\alias{Thresholding}
 \alias{da.thresh}
 \alias{hybrid.thresh}
 \alias{manual.thresh}

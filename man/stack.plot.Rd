@@ -15,10 +15,10 @@
 \arguments{
   \item{x}{\code{ts} object}
   \item{layout}{Doublet defining the dimension of the panel.  If not
-    specified, the dimensions are chose automatically.}
+    specified, the dimensions are chosen automatically.}
   \item{same.scale}{Vector the same length as the number of series to be
     plotted.  If not specified, all panels will have unique axes.}
-  See \code{plot.ts} for details on all other arguments.
+  \item{plot.type,panel,log,col,bg,pch,cex,lty,lwd,ann,xlab,main,oma,...}{See \code{plot.ts}.}
 }
 \value{
 }

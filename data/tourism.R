@@ -1,1 +1,1 @@
-tourism <- ts(scan("tourism.txt"), start=1960, freq=4)
+tourism <- ts(scan("tourism.txt", quiet=TRUE), start=1960, freq=4)
