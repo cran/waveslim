@@ -10,14 +10,14 @@
   (SP), and seasonal fractional difference (SFD) processes.
 }
 \usage{fdp.sdf(freq, d, sigma2 = 1)
-spp.sdf(freq, delta, omega, sigma2 = 1)
+spp.sdf(freq, d, fG, sigma2 = 1)
 spp2.sdf(freq, d1, f1, d2, f2, sigma2 = 1)
 sfd.sdf(freq, s, d, sigma2 = 1)
 }
 \arguments{
   \item{freq}{vector of frequencies, normally from 0 to 0.5}
-  \item{d,d1,d2,delta}{fractional difference parameter}
-  \item{f1,f2,omega}{Gegenbauer frequency}
+  \item{d,d1,d2}{fractional difference parameter}
+  \item{fG,f1,f2}{Gegenbauer frequency}
   \item{s}{seasonal parameter}
   \item{sigma2}{innovations variance}
 }

@@ -4,8 +4,8 @@ fdp.sdf <- function(freq, d, sigma2=1)
 bandpass.fdp <- function(a, b, d)
   2 * integrate(fdp.sdf, lower=a, upper=b, d=d)$value
 
-spp.sdf <- function(freq, delta, omega, sigma2=1)
-  sigma2 * abs(2 * (cos(2*pi*freq) - cos(2*pi*omega)))^(-2*delta)
+spp.sdf <- function(freq, d, fG, sigma2=1)
+  sigma2 * abs(2 * (cos(2*pi*freq) - cos(2*pi*fG)))^(-2*d)
 
 spp2.sdf <- function(freq, d1, f1, d2, f2, sigma2=1) {
   sigma2 * abs(2 * (cos(2*pi*freq) - cos(2*pi*f1)))^(-2 * d1) * 

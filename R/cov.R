@@ -3,17 +3,12 @@
 wave.variance <- function(x, type="eta3", p=0.025)
 {
   ci.gaussian <- function(x, y, p) {
-    my.acf <- function(x)
-      {
-        n <- sum(!is.na(x))
-        x <- c(x[!is.na(x)], rep(0, n))
-        Re(fft(Mod(fft(x))^2, inv = TRUE)/2/n^2)[1:n]
-      }
     find.first <- function(v) {
-      na.length <- sum(is.na(v)); v[na.length + 1]
+      na.length <- sum(is.na(v))
+      v[na.length + 1]
     }
     x.acf <- lapply(x, FUN = my.acf)
-    Aj <- unlist(lapply(x.acf, FUN = function(v) sum(v*v,na.rm=TRUE))) -
+    Aj <- unlist(lapply(x.acf, FUN = function(v) sum(v*v, na.rm = TRUE))) -
       unlist(lapply(x.acf, FUN = find.first))^2 / 2
     wv.var <- 2 * Aj / unlist(lapply(x, FUN = function(v) sum(!is.na(v))))
     return(data.frame(wavevar = y, lower = y - qnorm(1-p) * sqrt(wv.var),
@@ -33,7 +28,6 @@ wave.variance <- function(x, type="eta3", p=0.025)
   ci.eta3 <- function(x, y, p) {
     x.length <- unlist(lapply(x, FUN=function(v)sum(!is.na(v))))
     eta3 <- pmax(x.length / 2^(1:length(x)), 1)
-    ## cat(paste("  max{M_j/2^j, 1} =", eta3, "\n\n"))
     return(data.frame(wavevar = y, lower = eta3 * y / qchisq(1-p, eta3),
                       upper = eta3 * y / qchisq(p, eta3)))
   }
@@ -65,7 +59,6 @@ wave.variance <- function(x, type="eta3", p=0.025)
     eta3 = ci.eta3(x, y, p),
     nongaussian = ci.nongaussian(x, y, p),
     stop("Invalid selection of \"type\" for the confidence interval"))
-
 }
 
 ##plot.var <- function(x, y=NA, ylim=range(x, y, na.rm=TRUE))
@@ -126,10 +119,12 @@ wave.covariance <- function(x, y)
   
   l <- length(x)
   xy <- vector("list", l)
-  for(i in 1:l) xy[[i]] <- as.vector(x[[i]] * y[[i]])
+  for(i in 1:l)
+    xy[[i]] <- as.vector(x[[i]] * y[[i]])
   z.ss <- unlist(lapply(xy, sum, na.rm=TRUE))
   x.na <- lapply(x, is.na)
-  for(i in 1:l) x.na[[i]] <- !x.na[[i]]
+  for(i in 1:l)
+    x.na[[i]] <- !x.na[[i]]
   z.length <- unlist(lapply(x.na, sum))
 
   zz <- z.ss / z.length
@@ -145,6 +140,19 @@ wave.covariance <- function(x, y)
                     upper = zz + qnorm(.975) * sqrt(var.gamma))
   return(as.matrix(out))
 }
+
+##polyci <- function(x, xci, sp, color=2)
+##{
+##  n <- length(x)
+##  y <- 2^(0:(n-1)+sp*.05)
+##  delta <- y - 2^(0:(n-1))
+##  for(i in 1:n){
+##     polygon(c(y[i] + .6*delta[i], y[i] + .6*delta[i], y[i] - .6*delta[i],
+##        y[i] - .6*delta[i]), c(xci[i,], xci[i,2:1]), border=FALSE,
+##        col=color, lty=1)
+##  }
+##  points(y, x, pch="-")
+##}
 
 ##plot.cov <- function(x, ylim=range(x,0))
 ##{
@@ -194,19 +202,6 @@ wave.correlation <- function(x, y, N, p = .975)
 
 ## Plotting functions for wavelet variance and covariance
 
-##polyci <- function(x, xci, sp, color=2)
-##{
-##  n <- length(x)
-##  y <- 2^(0:(n-1)+sp*.05)
-##  delta <- y - 2^(0:(n-1))
-##  for(i in 1:n){
-##     polygon(c(y[i] + .6*delta[i], y[i] + .6*delta[i], y[i] - .6*delta[i],
-##        y[i] - .6*delta[i]), c(xci[i,], xci[i,2:1]), border=FALSE,
-##        col=color, lty=1)
-##  }
-##  points(y, x, pch="-")
-##}
-
 ## Wavelet cross-covariance 
 
 spin.covariance <- function(x, y, lag.max = NA)
@@ -218,8 +213,7 @@ spin.covariance <- function(x, y, lag.max = NA)
 
   lag1 <- numeric(xx.length + 1)
   lag2 <- numeric(xx.length + 1)
-  for(i in 1:(xx.length+1))
-    {
+  for(i in 1:(xx.length+1)) {
       lag1[i] <- sum(xx * yy, na.rm=TRUE) / n.length
       lag2[i] <- sum(zz * yy, na.rm=TRUE) / n.length
       xx <- c(xx[2:n.length], NA)
@@ -239,8 +233,7 @@ spin.correlation <- function(x, y, lag.max = NA)
 
   lag1 <- numeric(xx.length + 1)
   lag2 <- numeric(xx.length + 1)
-  for(i in 1:(xx.length+1))
-    {
+  for(i in 1:(xx.length+1)) {
       lag1[i] <- sum(xx * yy, na.rm=TRUE) / sqrt(xx.var * yy.var) / n.length
       lag2[i] <- sum(zz * yy, na.rm=TRUE) / sqrt(xx.var * yy.var) / n.length
       xx <- c(xx[2:n.length], NA)

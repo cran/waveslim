@@ -20,7 +20,8 @@ dpss.taper <- function(n, k, nw = 4, nmax = 2^(ceiling(log(n,2)))) {
                   vold = double(n),
                   u = double(n),
                   scr1 = double(n),
-                  ifault = integer(1))
+                  ifault = integer(1),
+                  PACKAGE="waveslim")
   ##list(v = out$v[1:n, 1:k], eigen = out$sig[-1] + 1, iter = 
   ##     out$totiTRUE, n = out$n, w = out$w, ifault = out$ifault)
   return(out$v[1:n, 1:k])

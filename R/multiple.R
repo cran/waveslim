@@ -6,8 +6,7 @@ rotcumvar <- function(x) {
   pmax(abs(plus), abs(minus))
 }
 
-testing.hov <- function(x, wf, J, min.coef=128, debug=TRUE)
-{
+testing.hov <- function(x, wf, J, min.coef=128, debug=FALSE) {
   n <- length(x)
   change.points <- NULL
 

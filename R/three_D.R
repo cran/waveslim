@@ -28,7 +28,7 @@ dwt.3d <- function(x, wf, J=4, boundary="periodic")
     out <- .C("three_D_dwt", "cube"=as.double(x), "NX"=nx, "NY"=ny,
               "NZ"=nz, "filter.length"=L, "hpf"=h, "lpf"=g, "LLL"=z,
               "HLL"=z, "LHL"=z, "LLH"=z, "HHL"=z, "HLH"=z, "LHH"=z,
-              "HHH"=z)[8:15]
+              "HHH"=z, PACKAGE="waveslim")[8:15]
     if(j < J) {
       index <- (7*(j-1)+1):(7*j)
       x.wt[index] <- out[-1]
@@ -101,7 +101,7 @@ idwt.3d <- function(y)
               as.double(y[[LHL]]), as.double(y[[LLH]]),
               as.double(y[[HHL]]), as.double(y[[HLH]]),
               as.double(y[[LHH]]), as.double(y[[HHH]]), 
-              nx, ny, nz, L, h, g, "Y"=z)
+              nx, ny, nz, L, h, g, "Y"=z, PACKAGE="waveslim")
 
     y.in <- out$Y
   }
@@ -138,7 +138,7 @@ modwt.3d <- function(x, wf, J=4, boundary="periodic")
     out <- .C("three_D_modwt", "cube"=as.double(x), "NX"=nx, "NY"=ny,
               "NZ"=nz, "J"=j, "filter.length"=L, "hpf"=h, "lpf"=g,
               "LLL"=z, "HLL"=z, "LHL"=z, "LLH"=z, "HHL"=z, "HLH"=z,
-              "LHH"=z, "HHH"=z)[9:16]
+              "LHH"=z, "HHH"=z, PACKAGE="waveslim")[9:16]
     if(j < J) {
       index <- (7*(j-1)+1):(7*j)
       x.wt[index] <- out[-1]
@@ -211,7 +211,7 @@ imodwt.3d <- function(y)
               as.double(y[[LHL]]), as.double(y[[LLH]]),
               as.double(y[[HHL]]), as.double(y[[HLH]]),
               as.double(y[[LHH]]), as.double(y[[HHH]]), 
-              nx, ny, nz, j, L, h, g, "Y"=z)
+              nx, ny, nz, j, L, h, g, "Y"=z, PACKAGE="waveslim")
 
     y.in <- out$Y
   }

@@ -1,3 +1,19 @@
+##
+##  Nile river minima
+##
+
+##  Yearly minimal water levels of the Nile river for the years 622
+##  to 1281, measured at the Roda gauge near Cairo (Tousson, 1925,
+##  p. 366-385). The data are listed in chronological sequence by row.
+
+##  The original Nile river data supplied by Beran only contained only
+##  500 observations (622 to 1121).  However, the book claimed to have
+##  660 observations (622 to 1281).  I added the remaining observations
+##  from the book, by hand, and still came up short with only 653
+##  observations (622 to 1264).
+
+### --- now have 663 observations : years  622--1284  (as in orig. source)
+
 nile <- ts(c(1157,1088,1169,1169,984,1322,1178,1103,1211,1292,1124,
 1171,1133,1227,1142,1216,1259,1299,1232,1117,1155,
 1232,1083,1020,1394,1196,1148,1083,1189,1133,1034,
@@ -64,4 +80,4 @@ nile <- ts(c(1157,1088,1169,1169,984,1322,1178,1103,1211,1292,1124,
 1112,1169,1110,1178,1133,1153,1139,1155,1187,1196,
 1220,1166,1128,1101,1157,1175,1142,1187,1254,1198,
 1263,1283,1252,1160,1234,1234,1232,1306,1205,1054,
-1151,1108,1097), start=622, frequency=1)
+1151,1108,1097), 622, frequency=1)

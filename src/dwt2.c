@@ -240,7 +240,8 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
      */
     data = (double *) malloc((*M) * sizeof(double));
     for(j = 0; j < *M; j++) {
-      index = i * (*N) + j;
+      /* index = i * (*N) + j; */
+      index = i * (*M) + j;
       data[j] = X[index];
       if(debug)
 	printf("X[%d][%d] = %f\n", i, j, X[index]);
@@ -250,7 +251,8 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
      */
     modwt(data, M, J, L, h, g, Wout, Vout);
     for(k = 0; k < *M; k++) {
-      index = i * (*N) + k;
+      /* index = i * (*N) + k; */
+      index = i * (*M) + k;
       Low[index] = Vout[k]; 
       High[index] = Wout[k];
       if(debug) {
@@ -396,7 +398,8 @@ void two_D_imodwt(double *LL, double *LH, double *HL, double *HH, int *M,
      *  Must take columns from High and Low and place into vectors for iMODWT.
      */
     for(k = 0; k < *M; k++) {
-      index = i * (*N) + k;
+      /* index = i * (*N) + k; */
+      index = i * (*M) + k;
       Vin[k] = Low[index];
       Win[k] = High[index];
     }
@@ -404,7 +407,8 @@ void two_D_imodwt(double *LL, double *LH, double *HL, double *HH, int *M,
     imodwt(Win, Vin, M, J, L, h, g, Xout);
 
     for(j = 0; j < *M; j++) {
-      index = i * (*N) + j;
+      /* index = i * (*N) + j; */
+      index = i * (*M) + j;
       image[index] = Xout[j];
     }
   }

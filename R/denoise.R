@@ -93,36 +93,26 @@ sure.thresh <- function(wc, max.level=4, hard=TRUE)
     length(ax) - 2 * num + sum(pmin(ax, t)^2)
   }
 
-  if(hard) {
-    # Hard thresholding
-    for(i in names(wc)[1:max.level]) {
-      wci <- wc[[i]]
-      ni <- length(wci)
-      factor <- median(abs(wci)) / .6745
-      xi <- wci / factor
-      sxi <- sort(abs(xi))
-      s <- cumsum(sxi) + ((ni - 1):0) * sxi
-      risk <- (ni - (2 * (1:ni)) + s) / ni
-      surethresh <- sqrt(sxi[order(risk)[1]])
-      wc.shrink[[i]] <- wci * (abs(wci) > surethresh)
+  for(i in names(wc)[1:max.level]) {
+    wci <- wc[[i]]
+    ni <- length(wci)
+    factor <- median(abs(wci)) / .6745
+    xi <- wci / factor
+    sxi <- sort(abs(xi))^2
+    s <- cumsum(sxi) + ((ni - 1):0) * sxi
+    risk <- (ni - (2 * (1:ni)) + s) / ni
+    surethresh <- sqrt(sxi[order(risk)[1]])
+    if(hard) {
+      ## Hard thresholding
+      wc.shrink[[i]] <- wci * (abs(xi) > surethresh)
+    }
+    else {
+      ## Soft thresholding
+      wc.shrink[[i]] <- sign(wci) * (abs(wci) - factor*surethresh) *
+        (abs(xi) > surethresh)
     }
   }
-  else {
-    # Soft thresholding
-    for(i in names(wc)[1:max.level]) {
-      wci <- wc[[i]]
-      ni <- length(wci)
-      factor <- median(abs(wci)) / .6745
-      xi <- wci / factor
-      sxi <- sort(abs(xi))
-      s <- cumsum(sxi) + ((ni - 1):0) * sxi
-      risk <- (ni - (2 * (1:ni)) + s) / ni
-      surethresh <- sqrt(sxi[order(risk)[1]])
-      wc.shrink[[i]] <- sign(wci) * (abs(wci) - surethresh) *
-        (abs(wci) > surethresh)
-    }
-  }
-  wc.shrink
+  return(wc.shrink)
 }
 
 hybrid.thresh <- function(wc, max.level = 4, verbose = FALSE, seed = 0)

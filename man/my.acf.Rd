@@ -1,21 +1,25 @@
 \name{my.acf}
 \alias{my.acf}
-\title{Auotocovariance Function via the Discrete Fourier Transform}
+\alias{my.ccf}
+\title{Autocovariance Functions via the Discrete Fourier Transform}
 \description{
-  Computes the autocovariance function for a time series.
+  Computes the autocovariance function (ACF) for a time series or the
+  cross-covariance function (CCF) between two time series.
 }
 \usage{my.acf(x)
+my.ccf(a, b)
 }
 \arguments{
-  \item{x}{time series}
+  \item{x,a,b}{time series}
 }
 \value{
-  The autocovariance function, for all nonnegative lags, is output.
+  The autocovariance function for all nonnegative lags or the
+  cross-covariance function for all lags.
 }
 \details{
   The series is zero padded to twice its length before the discrete
   Fourier transform is applied.  Only the values corresponding to
-  nonnegative lags are provided.
+  nonnegative lags are provided (for the ACF).
 }
 %\references{}
 %\seealso{}

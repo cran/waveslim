@@ -24,7 +24,7 @@ dwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
   for(j in 1:J) {
     W <- V <- numeric(N/2^j)
     out <- .C("dwt", as.double(x), as.integer(N/2^(j-1)), L, h, g, 
-              W=as.double(W), V=as.double(V))[6:7]
+              W=as.double(W), V=as.double(V), PACKAGE="waveslim")[6:7]
     y[[j]] <- out$W
     x <- out$V
   }
@@ -71,7 +71,7 @@ idwt <- function(y)
     N <- length(X)
     XX <- numeric(2 * length(y[[jj]]))
     X <- .C("idwt", as.double(y[[jj]]), as.double(X), as.integer(N), L, 
-            h, g, out=as.double(XX))$out
+            h, g, out=as.double(XX), PACKAGE="waveslim")$out
   }
   return(X)
 }
@@ -104,7 +104,7 @@ modwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
   
   for(j in 1:J) {
     out <- .C("modwt", as.double(x), N, as.integer(j), L, ht, gt, 
-              W=W, V=V)[7:8]
+              W=W, V=V, PACKAGE="waveslim")[7:8]
     y[[j]] <- out$W
     x <- out$V
   }
@@ -142,7 +142,7 @@ imodwt <- function(y)
   for(j in J:1) {
     jj <- paste("d", j, sep="")
     X <- .C("imodwt", as.double(y[[jj]]), as.double(X), N, as.integer(j), 
-            L, ht, gt, out=XX)$out
+            L, ht, gt, out=XX, PACKAGE="waveslim")$out
   }
   return(X)
 }

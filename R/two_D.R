@@ -25,7 +25,7 @@ dwt.2d <- function(x, wf, J=4, boundary="periodic")
   for(j in 1:J) {
     out <- .C("two_D_dwt", "Image"=as.double(x), "Rows"=m, "Cols"=n, 
                 "filter.length"=L, "hpf"=h, "lpf"=g, "LL"=z, "LH"=z,
-                "HL"=z, "HH"=z)[7:10]
+                "HL"=z, "HH"=z, PACKAGE="waveslim")[7:10]
     if(j < J) {
       index <- (3*j-2):(3*j)
       x.wt[index] <- out[-1]
@@ -85,7 +85,7 @@ idwt.2d <- function(y)
 
     out <- .C("two_D_idwt", as.double(y.in), as.double(y[[LH]]),
               as.double(y[[HL]]), as.double(y[[HH]]), m, n, L, h, g,
-              "Y"=x)
+              "Y"=x, PACKAGE="waveslim")
     y.in <- out$Y
   }
   zapsmall(y.in)
@@ -118,7 +118,7 @@ modwt.2d <- function(x, wf, J=4, boundary="periodic")
   for(j in 1:J) {
     out <- .C("two_D_modwt", "Image"=as.double(x), "Rows"=m, "Cols"=n,
               "Level"=j, "filter.length"=L, "hpf"=h, "lpf"=g, "LL"=z,
-              "LH"=z, "HL"=z, "HH"=z)[8:11]
+              "LH"=z, "HL"=z, "HH"=z, PACKAGE="waveslim")[8:11]
     if(j < J) {
       index <- (3*j-2):(3*j)
       x.wt[index] <- out[-1]
@@ -172,7 +172,7 @@ imodwt.2d <- function(y)
 
     out <- .C("two_D_imodwt", as.double(y.in), as.double(y[[LH]]),
               as.double(y[[HL]]), as.double(y[[HH]]), m, n, j, L,
-              h, g, "Y"=x)
+              h, g, "Y"=x, PACKAGE="waveslim")
     y.in <- out$Y
   }
   zapsmall(y.in)
@@ -385,7 +385,7 @@ dwpt.2d <- function(x, wf="la8", J=4, boundary="periodic")
       ## Perform the DWPT
       out <- .C("two_D_dwt", "Image"=as.double(x), "Rows"=m, "Cols"=n, 
                 "filter.length"=L, "hpf"=h, "lpf"=g, "LL"=z, "LH"=z,
-                "HL"=z, "HH"=z)[7:10]
+                "HL"=z, "HH"=z, PACKAGE="waveslim")[7:10]
       ## Pass wavelet coefficient images into the DWPT object.
       x.wpt[[LL]] <- out[["LL"]]
       x.wpt[[LH]] <- out[["LH"]]
@@ -449,25 +449,29 @@ idwpt.2d <- function(y, y.basis)
             ## Upper right-hand corner
             out <- .C("two_D_idwt", as.double(y[[HH]]),
                       as.double(y[[HL]]), as.double(y[[LH]]),
-                      as.double(y[[LL]]), m, n, L, h, g, "Y"=XX)$Y
+                      as.double(y[[LL]]), m, n, L, h, g, "Y"=XX,
+                      PACKAGE="waveslim")$Y
           else {
             ## Upper left-hand corner
             if((pnx %% 2 == 0) & (pny %% 2 != 0))
               out <- .C("two_D_idwt", as.double(y[[LH]]),
                         as.double(y[[LL]]), as.double(y[[HH]]),
-                        as.double(y[[HL]]), m, n, L, h, g, "Y"=XX)$Y
+                        as.double(y[[HL]]), m, n, L, h, g, "Y"=XX,
+                        PACKAGE="waveslim")$Y
             else {
               ## Lower right-hand corner
               if((pnx %% 2 != 0) & (pny %% 2 == 0))
                 out <- .C("two_D_idwt", as.double(y[[HL]]),
                           as.double(y[[HH]]), as.double(y[[LL]]),
-                          as.double(y[[LH]]), m, n, L, h, g, "Y"=XX)$Y
+                          as.double(y[[LH]]), m, n, L, h, g, "Y"=XX,
+                          PACKAGE="waveslim")$Y
               else {
                 ## Lower left-hand corner
                 if((pnx %% 2 == 0) & (pny %% 2 == 0))
                   out <- .C("two_D_idwt", as.double(y[[LL]]),
                             as.double(y[[LH]]), as.double(y[[HL]]),
-                            as.double(y[[HH]]), m, n, L, h, g, "Y"=XX)$Y
+                            as.double(y[[HH]]), m, n, L, h, g, "Y"=XX,
+                            PACKAGE="waveslim")$Y
                 else
                   stop("Ouch!")
               }
