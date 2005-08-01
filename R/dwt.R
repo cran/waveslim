@@ -73,7 +73,8 @@ idwt <- function(y)
     X <- .C("idwt", as.double(y[[jj]]), as.double(X), as.integer(N), L, 
             h, g, out=as.double(XX), PACKAGE="waveslim")$out
   }
-  return(X)
+  if(attr(y, "boundary") == "reflection") return(X[1:N])
+  else return(X)
 }
 
 modwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
@@ -121,8 +122,6 @@ imodwt <- function(y)
   if(is.null(ctmp) || all(ctmp != "modwt"))
     stop("argument `y' is not of class \"modwt\"")
 
-  ##if(attributes(y)$boundary != "periodic")
-  ##  stop("Invalid boundary rule in imodwt")
   J <- length(y) - 1
 
   dict <- wave.filter(attributes(y)$wavelet)
@@ -144,7 +143,8 @@ imodwt <- function(y)
     X <- .C("imodwt", as.double(y[[jj]]), as.double(X), N, as.integer(j), 
             L, ht, gt, out=XX, PACKAGE="waveslim")$out
   }
-  return(X)
+  if(attr(y, "boundary") == "reflection") return(X[1:(N/2)])
+  else return(X)
 }
 
 brick.wall <- function(x, wf, method="modwt")

@@ -37,9 +37,9 @@ spp2.mle(y, wf, J=log(length(y),2)-1, p=0.01, dyadic=TRUE, frac=1)
   while the innovations variance is subsequently estimated.
 }
 \references{
-  Whitcher, B. (2003)
-  Wavelet-based estimation for seasonal long-memory processes.
-  Technical Report.
+  Whitcher, B. (2004)
+  Wavelet-based estimation for seasonal long-memory processes,
+  \emph{Technometrics}, \bold{46}, No. 2, 225-238.  
 }
 \seealso{
   \code{\link{fdp.mle}}

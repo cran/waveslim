@@ -1,13 +1,19 @@
-\name{acvs.andel8}
+\name{Andel}
 \alias{acvs.andel8}
+\alias{acvs.andel9}
+\alias{acvs.andel10}
+\alias{acvs.andel11}
 \title{Autocovariance and Autocorrelation Sequences for a Seasonal
   Persistent Process}
 \description{
   The autocovariance and autocorrelation sequences from the time series
-  model in Figure 8 of Andel (1986).  They were obtained through numeric
-  integration of the spectral density function.
+  model in Figures 8, 9, 10, and 11 of Andel (1986).  They were obtained
+  through numeric integration of the spectral density function.
 }
 \usage{data(acvs.andel8)
+data(acvs.andel9)
+data(acvs.andel10)
+data(acvs.andel11)
 }
 \format{
   A data frame with 4096 rows and three columns:

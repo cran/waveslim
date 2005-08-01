@@ -28,6 +28,7 @@ dualtree                Dual-tree Complex Discrete Wavelet Transform
 dwpt                    (Inverse) Discrete Wavelet Packet Transforms
 dwpt.2d                 (Inverse) Discrete Wavelet Packet Transforms
                         in Two Dimensions
+dwpt.boot               Bootstrap Time Series Using the DWPT
 dwpt.sim                Simulate Seasonal Persistent Processes Using
                         the DWPT
 dwt                     Discrete Wavelet Transform (DWT)
