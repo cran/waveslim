@@ -1,5 +1,6 @@
 dwpt.boot <- function(y, wf, J=log(length(y),2)-1, p=1e-04, frac=1) {
 
+  N <- length(y)
   if(N/2^J != trunc(N/2^J)) 
     stop("Sample size is not divisible by 2^J")
   

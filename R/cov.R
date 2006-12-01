@@ -1,7 +1,6 @@
 ## Wavelet Variance
 
-wave.variance <- function(x, type="eta3", p=0.025)
-{
+wave.variance <- function(x, type="eta3", p=0.025) {
   ci.gaussian <- function(x, y, p) {
     find.first <- function(v) {
       na.length <- sum(is.na(v))
@@ -16,8 +15,8 @@ wave.variance <- function(x, type="eta3", p=0.025)
   }
   
   ci.eta1 <- function(x, y, p) {
-    x4 <- lapply(x, FUN = function(v) sum(v^4, na.rm = TRUE))
-    eta1 <- x4.ss * unlist(lapply(x, FUN = function(v) sum(!is.na(v))))
+    ## x4 <- lapply(x, FUN = function(v) sum(v^4, na.rm = TRUE))
+    ## eta1 <- x4.ss * unlist(lapply(x, FUN = function(v) sum(!is.na(v))))
     return(0)
   }
   
@@ -74,8 +73,7 @@ wave.variance <- function(x, type="eta3", p=0.025)
 
 ## Wavelet Covariance
 
-wave.covariance <- function(x, y)
-{
+wave.covariance <- function(x, y) {
   my.acf.na <- function(v) {
     v <- v[!is.na(v)]
     my.acf(v)
@@ -166,8 +164,7 @@ wave.covariance <- function(x, y)
 
 ## Wavelet Correlation
 
-wave.correlation <- function(x, y, N, p = .975)
-{
+wave.correlation <- function(x, y, N, p = .975) {
   sum.of.squares <- function(x) { sum(x^2, na.rm=TRUE) / sum(!is.na(x)) }
   sum.of.not.squares <- function(x) { sum(x, na.rm=TRUE) / sum(!is.na(x)) }
 
@@ -204,8 +201,7 @@ wave.correlation <- function(x, y, N, p = .975)
 
 ## Wavelet cross-covariance 
 
-spin.covariance <- function(x, y, lag.max = NA)
-{
+spin.covariance <- function(x, y, lag.max = NA) {
   xx <- zz <- x[!is.na(x)]
   yy <- y[!is.na(y)]
   n.length <- length(xx)
@@ -222,8 +218,7 @@ spin.covariance <- function(x, y, lag.max = NA)
   c(rev(lag2[-1]), lag1)
 }
 
-spin.correlation <- function(x, y, lag.max = NA)
-{
+spin.correlation <- function(x, y, lag.max = NA) {
   xx <- zz <- x[!is.na(x)]
   yy <- y[!is.na(y)]
   n.length <- length(xx)

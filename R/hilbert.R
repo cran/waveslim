@@ -1,7 +1,6 @@
 ########################################################################
 
-dwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...)
-{
+dwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...) {
   switch(boundary,
          "reflection" =  x <- c(x, rev(x)),
          "periodic" = invisible(),
@@ -42,8 +41,7 @@ dwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...)
 
 ########################################################################
 
-dwt.hilbert.nondyadic <- function(x, ...)
-{
+dwt.hilbert.nondyadic <- function(x, ...) {
   M <- length(x)
   N <- 2^(ceiling(log(M, 2)))
   xx <- c(x, rep(0, N - M))
@@ -59,15 +57,14 @@ dwt.hilbert.nondyadic <- function(x, ...)
 
 ########################################################################
 
-idwt.hilbert <- function(y)
-{
+idwt.hilbert <- function(y) {
   switch(attributes(y)$boundary,
     "reflection" =  x <- c(x, rev(x)),
     "periodic" = invisible(),
     stop("Invalid boundary rule in dwt.dbp"))
   J <- attributes(y)$levels
  
-  dict <- my.filter(attributes(y)$wavelet)
+  dict <- hilbert.filter(attributes(y)$wavelet)
   L <- dict$length; storage.mode(L) <- "integer"
   h <- dict$hpf; storage.mode(h) <- "double"
   g <- dict$lpf; storage.mode(g) <- "double"
@@ -85,8 +82,7 @@ idwt.hilbert <- function(y)
 
 ########################################################################
 
-modwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...)
-{
+modwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...) {
   switch(boundary,
          "reflection" =  x <- c(x, rev(x)),
          "periodic" = invisible(),
@@ -126,13 +122,12 @@ modwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...)
 
 ########################################################################
 
-imodwt.hilbert <- function(y)
-{
+imodwt.hilbert <- function(y) {
   if(attribute(y)$boundary != "periodic")
     stop("Invalid boundary rule in imodwt")
   J <- length(y) - 1
 
-  dict <- my.filter(attributes(y)$wavelet)
+  dict <- hilbert.filter(attributes(y)$wavelet)
   L <- dict$length
   ht <- dict$hpf / sqrt(2)
   gt <- dict$lpf / sqrt(2)
@@ -150,8 +145,7 @@ imodwt.hilbert <- function(y)
 
 ########################################################################
 
-hilbert.filter <- function(name)
-{
+hilbert.filter <- function(name) {
   select.K3L3 <- function() {
     L <- 12
     h0 <- c(1.1594353e-04, -2.2229002e-03, -2.2046914e-03, 4.3427642e-02,
@@ -285,8 +279,7 @@ hilbert.filter <- function(name)
 
 ########################################################################
 
-phase.shift.hilbert <- function(x, wf)
-{
+phase.shift.hilbert <- function(x, wf) {
   coe <- function(g)
     sum(0:(length(g)-1) * g^2) / sum(g^2)
 
@@ -310,8 +303,7 @@ phase.shift.hilbert <- function(x, wf)
 
 ########################################################################
 
-modwpt.hilbert <- function(x, wf, n.levels=4, boundary="periodic")
-{
+modwpt.hilbert <- function(x, wf, n.levels=4, boundary="periodic") {
   N <- length(x)
   storage.mode(N) <- "integer"
   J <- n.levels
@@ -367,8 +359,7 @@ modwpt.hilbert <- function(x, wf, n.levels=4, boundary="periodic")
 
 ########################################################################
 
-phase.shift.hilbert.packet <- function(x, wf)
-{
+phase.shift.hilbert.packet <- function(x, wf) {
   coe <- function(g)
     sum(0:(length(g)-1) * g^2) / sum(g^2)
 
@@ -404,8 +395,7 @@ phase.shift.hilbert.packet <- function(x, wf)
 
 ########################################################################
 
-modhwt.coh <- function(x, y, f.length = 0)
-{
+modhwt.coh <- function(x, y, f.length = 0) {
   filt <- rep(1, f.length + 1)
   filt <- filt / length(filt)
 
@@ -423,8 +413,7 @@ modhwt.coh <- function(x, y, f.length = 0)
 
 ########################################################################
 
-modhwt.phase <- function(x, y, f.length = 0)
-{
+modhwt.phase <- function(x, y, f.length = 0) {
   filt <- rep(1, f.length + 1)
   filt <- filt / length(filt)
 
@@ -440,8 +429,7 @@ modhwt.phase <- function(x, y, f.length = 0)
 
 ########################################################################
 
-modhwt.coh.seasonal <- function(x, y, S=10, season=365)
-{
+modhwt.coh.seasonal <- function(x, y, S=10, season=365) {
   J <- length(x) - 1
   coh <- shat <- vector("list", J)
   for(j in 1:J) {
@@ -482,8 +470,7 @@ modhwt.coh.seasonal <- function(x, y, S=10, season=365)
 
 ########################################################################
 
-modhwt.phase.seasonal <- function(x, y, season=365)
-{
+modhwt.phase.seasonal <- function(x, y, season=365) {
   J <- length(x) - 1
   phase <- vector("list", J)
   for(j in 1:J) {

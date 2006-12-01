@@ -49,6 +49,7 @@ dwt.2d <- function(x, wf, J=4, boundary="periodic")
   attr(x.wt, "J") <- J
   attr(x.wt, "wavelet") <- wf
   attr(x.wt, "boundary") <- boundary
+  attr(x.wt, "class") <- "dwt.2d"
   x.wt
 }
 
