@@ -123,7 +123,7 @@ modwt.hilbert <- function(x, wf, n.levels=4, boundary="periodic", ...) {
 ########################################################################
 
 imodwt.hilbert <- function(y) {
-  if(attribute(y)$boundary != "periodic")
+  if(attributes(y)$boundary != "periodic")
     stop("Invalid boundary rule in imodwt")
   J <- length(y) - 1
 

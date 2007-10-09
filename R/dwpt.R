@@ -1,7 +1,7 @@
 dwpt <- function(x, wf="la8", n.levels=4, boundary="periodic") {
   N <- length(x)
   J <- n.levels
-  if(log(N, 2) != trunc(log(N, 2)))
+  if(N/2^J != trunc(N/2^J))
     stop("Sample size is not a power of 2")
   if(2^J > N)
     stop("wavelet transform exceeds sample size in dwt")
