@@ -15,7 +15,7 @@ dualtree2D(x, J, Faf, af)
 idualtree2D(w, J, Fsf, sf)
 }
 \arguments{
-  \item{x}{$N$-point vector or $M{\times}N$ matrix.}
+  \item{x}{\eqn{N}-point vector or \eqn{M{\times}N}{MxN} matrix.}
   \item{w}{DWT coefficients.}
   \item{J}{number of stages.}
   \item{Faf}{analysis filters for the first stage.}
@@ -26,20 +26,20 @@ idualtree2D(w, J, Fsf, sf)
 \value{
   For the analysis of \code{x}, the output is
   \item{w}{DWT coefficients.  Each wavelet scale is a list containing
-    the real and imaginary parts.  The final scale ($J+1$) contains the
-    low-pass filter coefficients.}
+    the real and imaginary parts.  The final scale (\eqn{J+1}) contains
+    the low-pass filter coefficients.}
   For the synthesis of \code{w}, the output is 
   \item{y}{output signal}
 }
 \details{
-  In one dimension $N$ is divisible by $2^J$ and
-  $N\ge2^{J-1}\cdot\mbox{length}(\mbox{\code{af}})$.
+  In one dimension \eqn{N} is divisible by \eqn{2^J} and
+  \eqn{N\ge2^{J-1}\cdot\mbox{length}(\mbox{\code{af}})}.
 
-  In two dimensions, these two conditions must hold for both $M$ and
-  $N$.
+  In two dimensions, these two conditions must hold for both \eqn{M} and 
+  \eqn{N}.
 }
 \references{
-  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY
+  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\cr
   \url{http://taco.poly.edu/WaveletSoftware/}
 }
 \seealso{

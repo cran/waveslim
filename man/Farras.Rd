@@ -25,8 +25,8 @@ FSfarras()
   wavelet bases", Proc. IEEE Int. Conf. Acoust., Speech, Signal
   Processing (ICASSP), May 2001.
 
-  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY
-  http://taco.poly.edu/WaveletSoftware/
+  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\cr
+  \url{http://taco.poly.edu/WaveletSoftware/}
 }
 \seealso{
   \code{\link{afb}}, \code{\link{dualtree}}, \code{\link{dualfilt1}}.

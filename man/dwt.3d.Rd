@@ -3,8 +3,10 @@
 \alias{idwt.3d}
 \title{Three Dimensional Separable Discrete Wavelet Transform}
 \description{
+  Three-dimensional separable discrete wavelet transform (DWT).
 }
-\usage{dwt.3d(x, wf, J=4, boundary="periodic")
+\usage{
+dwt.3d(x, wf, J=4, boundary="periodic")
 idwt.3d(y)
 }
 \arguments{
@@ -15,14 +17,10 @@ idwt.3d(y)
   \item{boundary}{only \code{"periodic"} is currently implemented}
   \item{y}{an object of class \code{dwt.3d}}
 }
-\value{
-}
-\details{
-}
-\references{
-}
-\seealso{
-}
+%\value{}
+%\details{}
+%\references{}
+%\seealso{}
 %\examples{}
 \author{B. Whitcher}
 \keyword{ts}

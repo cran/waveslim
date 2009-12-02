@@ -2,9 +2,9 @@
 \alias{cshift}
 \alias{cshift2D}
 \alias{pm}
-\title{Miscellaneous Functions for Dual-tree Wavelet Software}
+\title{Miscellaneous Functions for Dual-Tree Wavelet Software}
 \description{
-  
+  Miscellaneous functions for dual-tree wavelet software.
 }
 \usage{
 cshift(x, m)
@@ -12,19 +12,19 @@ cshift2D(x, m)
 pm(a, b)
 }
 \arguments{
-  \item{x}{$N$-point vector}
+  \item{x}{\eqn{N}-point vector}
   \item{m}{amount of shift}
   \item{a,b}{}
 }
 \value{
-  \item{y}{vector $x$ will be shifed by $m$ samples to the left or
-    matrix $x$ will be shifed by $m$ samples down.}
+  \item{y}{vector \eqn{x} will be shifed by \eqn{m} samples to the left
+    or matrix \eqn{x} will be shifed by \eqn{m} samples down.}
 }
 \details{
 }
 \references{
-  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY
-  http://taco.poly.edu/WaveletSoftware/
+  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\cr
+  \url{http://taco.poly.edu/WaveletSoftware/}
 }
 %\seealso{}
 %\examples{}

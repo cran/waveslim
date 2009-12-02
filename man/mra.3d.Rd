@@ -24,14 +24,16 @@
     implemented, then the matrix you decompose is assumed to be periodic
     on its defined interval.}
 }
-\value{
-}
 \details{
   This code implements a three-dimensional multiresolution analysis
   by performing the one-dimensional pyramid algorithm (Mallat 1989) on
   each dimension of the input array.  Either the DWT or MODWT may be
   used to compute the multiresolution analysis, which is an additive 
   decomposition of the original array.
+}
+\value{
+  List structure containing the filter triplets associated with the
+  multiresolution analysis.
 }
 \references{
   Mallat, S. G. (1989)
@@ -41,8 +43,7 @@
   \bold{11}, No. 7, 674-693.
 
   Mallat, S. G. (1998)
-  \emph{A Wavelet Tour of Signal Processing},
-  Academic Press.
+  \emph{A Wavelet Tour of Signal Processing}, Academic Press.
 }
 \seealso{
   \code{\link{dwt.3d}}, \code{\link{modwt.3d}}

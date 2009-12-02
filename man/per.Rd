@@ -9,15 +9,10 @@
 \arguments{
   \item{z}{time series}
 }
-\value{
-}
-\details{
-}
-\references{
-
-}
-\seealso{
-}
+%\value{}
+%\details{}
+%\references{}
+%\seealso{}
 %\examples{}
 \author{Author: Jan Beran;  modified: Martin Maechler, Date: Sep 1995.}
 \keyword{ts}

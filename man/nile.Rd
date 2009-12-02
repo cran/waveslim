@@ -21,8 +21,8 @@
 }
 \source{
   Toussoun, O. (1925)
-  {M}{\'e}moire sur l'Histoire du {N}il,
-  Volume 18 in \emph{M{\'e}moires a l'Institut d'Egypte},
+  M\'emoire sur l'Histoire du Nil,
+  Volume 18 in \emph{M\'emoires a l'Institut d'Egypte},
   pp. 366-404.
 }
 \references{

@@ -25,14 +25,14 @@ modhwt.phase.seasonal(x, y, season = 365)
 \value{
   Time-varying or seasonal coherence and phase between two time series.
   The coherence estimates are between zero and one, while the phase
-  estimates are between $-\pi$ and $\pi$.
+  estimates are between \eqn{-\pi}{-pi} and \eqn{\pi}{pi}.
 }
 \details{
   The idea of seasonally-varying spectral analysis (SVSA, Madden 1986)
   is generalized using the MODWT and Hilbert wavelet pairs.  For the
-  seasonal case, $S$ seasons are used to produce a consistent estimate
-  of the coherence and phase.  For the non-seasonal case, a simple
-  rectangular (moving-average) filter is applied to the MODHWT
+  seasonal case, \eqn{S} seasons are used to produce a consistent
+  estimate of the coherence and phase.  For the non-seasonal case, a
+  simple rectangular (moving-average) filter is applied to the MODHWT
   coefficients in order to produce consistent estimates.
 }  
 \references{

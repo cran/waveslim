@@ -32,6 +32,21 @@ sfb2D.A(lo, hi, sf, d)
   \item{lo}{low-frequecy coefficients}
   \item{hi}{high-frequency coefficients}
 }
+\details{
+  The functions \code{afb2D.A} and \code{sfb2D.A} implement the
+  convolutions, either for analysis or synthesis, in one dimension
+  only.  Thus, they are the workhorses of \code{afb2D} and
+  \code{sfb2D}.  The output for the analysis filter bank along one
+  dimension (\code{afb2D.A}) is a list with two elements
+  \describe{
+    \item{lo}{low-pass subband}
+    \item{hi}{high-pass subband}
+  }
+  where the dimension of analysis will be half its original length.  The
+  output for the synthesis filter bank along one dimension
+  (\code{sfb2D.A}) will be the output array, where the dimension of
+  synthesis will be twice its original length.
+}
 \value{
   In one dimension the output for the analysis filter bank (\code{afb})
   is a list with two elements
@@ -49,22 +64,10 @@ sfb2D.A(lo, hi, sf, d)
   and the output for the synthesis filter bank (\code{sfb2D}) is the
   output array.
 
-  The functions \code{afb2D.A} and \code{sfb2D.A} implement the
-  convolutions, either for analysis or synthesis, in one dimension
-  only.  Thus, they are the workhorses of \code{afb2D} and
-  \code{sfb2D}.  The output for the analysis filter bank along one
-  dimension (\code{afb2D.A}) is a list with two elements
-  \item{lo}{low-pass subband}
-  \item{hi}{high-pass subband}
-  where the dimension of analysis will be half its original length.  The
-  output for the synthesis filter bank along one dimension
-  (\code{sfb2D.A}) will be the output array, where the dimension of
-  synthesis will be twice its original length.
 }
-%\details{}
 \references{
-  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\\
-  {\tt http://taco.poly.edu/WaveletSoftware/}
+  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\cr
+  \url{http://taco.poly.edu/WaveletSoftware/}
 }
 %\seealso{}
 \examples{
