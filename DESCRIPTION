@@ -1,6 +1,6 @@
 Package: waveslim
-Version: 1.6.3
-Date: 2009-12-02
+Version: 1.6.4
+Date: 2010-31-05
 Title: Basic wavelet routines for one-, two- and three-dimensional
         signal processing
 Author: Brandon Whitcher <bjw34032@users.sourceforge.net>
@@ -21,8 +21,6 @@ Description: Basic wavelet routines for time series (1D), image (2D)
 License: GPL (>= 2)
 URL: http://www2.imperial.ac.uk/~bwhitche
         http://www2.imperial.ac.uk/~bwhitche/book
+Packaged: 2010-06-09 17:53:14 UTC; brandon
 Repository: CRAN
-Repository/R-Forge/Project: waveslim
-Repository/R-Forge/Revision: 11
-Date/Publication: 2009-12-22 09:15:12
-Packaged: 2009-12-19 21:11:05 UTC; rforge
+Date/Publication: 2010-06-10 06:27:04
