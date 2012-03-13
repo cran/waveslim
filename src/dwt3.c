@@ -95,8 +95,10 @@ void three_D_dwt(double *X, int *NX, int *NY, int *NZ, int *L,
       k = k + (*NY - 1) * ((int) *NX/2);
       l = l + ((int) *NY/2 - 1) * ((int) *NX/2);
     }
-    printf("fmod(%d, %d) = %f\n", i, (int) *NX/2, fmod(i, (int) *NX/2));
-    printf("i = %d\tk = %d\tl = %d\n", i, k, l);
+    /*
+      printf("fmod(%d, %d) = %f\n", i, (int) *NX/2, fmod(i, (int) *NX/2));
+      printf("i = %d\tk = %d\tl = %d\n", i, k, l);
+    */
     /*
      *  Must take row from "Xl" and place into vector for DWT.
      */
@@ -112,9 +114,11 @@ void three_D_dwt(double *X, int *NX, int *NY, int *NZ, int *L,
       index = i + j * ((int) *NX/2) + l;
       Yll[index] = Vout[j]; 
       Ylh[index] = Wout[j];
-      if(printall == 1)
-	printf("Y.LL[%d][%d] = %f\nY.HL[%d][%d] = %f\n", i, j, 
-	       Yll[index], i, j, Ylh[index]);
+      /* 
+	 if(printall == 1)
+	 printf("Y.LL[%d][%d] = %f\nY.HL[%d][%d] = %f\n", i, j, 
+	 Yll[index], i, j, Ylh[index]);
+      */
     }
 
     /*
@@ -132,9 +136,11 @@ void three_D_dwt(double *X, int *NX, int *NY, int *NZ, int *L,
       index = i + j * ((int) *NX/2) + l;
       Yhl[index] = Vout[j]; 
       Yhh[index] = Wout[j];
-      if(printall == 1)
-	printf("Y.LH[%d][%d] = %f\nY.HH[%d][%d] = %f\n", i, j, 
-	       Yhl[index], i, j, Yhh[index]);
+      /* 
+	 if(printall == 1)
+	 printf("Y.LH[%d][%d] = %f\nY.HH[%d][%d] = %f\n", i, j, 
+	 Yhl[index], i, j, Yhh[index]);
+      */
     }
   }
 
@@ -178,9 +184,11 @@ void three_D_dwt(double *X, int *NX, int *NY, int *NZ, int *L,
       index = i + j * ((int) *NY/2 * (int) *NX/2);
       LLL[index] = Vout[j]; 
       LLH[index] = Wout[j];
-      if(printall == 1)
+      /*
+	if(printall == 1)
 	printf("LLL[%d][%d] = %f\nLLH[%d][%d] = %f\n", i, j, 
-	       LLL[index], i, j, LLH[index]);
+	LLL[index], i, j, LLH[index]);
+      */
     }
     /*
      *  Must take row from "Yhl" and place into vector for DWT.
