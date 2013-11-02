@@ -134,7 +134,9 @@ void two_D_idwt(double *LL, double *LH, double *HL, double *HH, int *M,
 		int *N, int *L, double *h, double *g, double *image)
 {
   int i, j, k;
+  /*
   int debug = 0;
+  */
   double *Win, *Vin, *Low, *High, *Xout;
   
   Low = (double *) malloc((*M)*2*(*N) * sizeof(double));
@@ -217,7 +219,9 @@ void two_D_modwt(double *X, int *M, int *N, int *J, int *L, double *h,
 		 double *g, double *LL, double *LH, double *HL, double *HH)
 {
   int i, j, k, index;
+  /*
   int debug = 0;
+  */
   double *data, *Wout, *Vout, *Low, *High;
   
   /*

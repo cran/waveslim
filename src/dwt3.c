@@ -16,7 +16,9 @@ void three_D_dwt(double *X, int *NX, int *NY, int *NZ, int *L,
 		 double *LHH, double *HHH)
 {
   int i, j, k, l, index;
+  /*
   int printall = 0;
+  */
   double *data, *Wout, *Vout, *Xl, *Xh, *Yll, *Ylh, *Yhl, *Yhh;
 
   /* printf("Original Data (N = %d)...\n", *NX * (*NY) * (*NZ));
@@ -267,7 +269,9 @@ void three_D_idwt(double *LLL, double *HLL, double *LHL, double *LLH,
 		  double *g, double *image)
 {
   int i, j, k, l;
+  /*
   int printall = 0;
+  */
   double *Win, *Vin, *Xl, *Xh, *Yll, *Ylh, *Yhl, *Yhh, *Xout;
 
   /*
@@ -826,4 +830,3 @@ void three_D_imodwt(double *LLL, double *HLL, double *LHL, double *LLH,
   free(Xl);
   free(Xh);
 }
-
