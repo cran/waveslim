@@ -7,8 +7,9 @@
 \usage{basis(x, basis.names)
 }
 \arguments{
-  \item{x}{}
-  \item{basis.names}{}
+  \item{x}{Output from the discrete wavelet package transfrom (DWPT).}
+  \item{basis.names}{Vector of character strings that describe leaves on
+    the DWPT basis tree.  See the examples below for appropriate syntax.}
 }
 \value{
   Vector of zeros and ones.
@@ -22,6 +23,7 @@
 }
 \examples{
 data(acvs.andel8)
+\dontrun{
 x <- hosking.sim(1024, acvs.andel8[,2])
 x.dwpt <- dwpt(x, "la8", 7)
 ## Select orthonormal basis from wavelet packet tree
@@ -34,5 +36,6 @@ y <- idwpt(x.dwpt, x.basis)
 par(mfrow=c(2,1), mar=c(5-1,4,4-1,2))
 plot.ts(x, xlab="", ylab="", main="Original Series")
 plot.ts(y, xlab="", ylab="", main="Reconstructed Series")
+}
 }
 \keyword{ts}

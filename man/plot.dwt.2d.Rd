@@ -6,7 +6,7 @@
   and plots it.  The coarser resolutions are nested within the
   lower-lefthand corner of the image.
 }
-\usage{plot.dwt.2d(x, cex.axis = 1, plot = TRUE, ...)
+\usage{\method{plot}{dwt.2d}(x, cex.axis = 1, plot = TRUE, ...)
 }
 \arguments{
   \item{x}{input matrix (image)}

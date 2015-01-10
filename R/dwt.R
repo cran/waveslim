@@ -24,7 +24,7 @@ dwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
   for(j in 1:J) {
     W <- V <- numeric(N/2^j)
     out <- .C("dwt", as.double(x), as.integer(N/2^(j-1)), L, h, g, 
-              W=as.double(W), V=as.double(V))[6:7]
+              W=as.double(W), V=as.double(V), PACKAGE="waveslim")[6:7]
     y[[j]] <- out$W
     x <- out$V
   }
@@ -71,9 +71,10 @@ idwt <- function(y)
     N <- length(X)
     XX <- numeric(2 * length(y[[jj]]))
     X <- .C("idwt", as.double(y[[jj]]), as.double(X), as.integer(N), L, 
-            h, g, out=as.double(XX))$out
+            h, g, out=as.double(XX), PACKAGE="waveslim")$out
   }
-  return(X)
+  if(attr(y, "boundary") == "reflection") return(X[1:N])
+  else return(X)
 }
 
 modwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
@@ -104,7 +105,7 @@ modwt <- function(x, wf="la8", n.levels=4, boundary="periodic")
   
   for(j in 1:J) {
     out <- .C("modwt", as.double(x), N, as.integer(j), L, ht, gt, 
-              W=W, V=V)[7:8]
+              W=W, V=V, PACKAGE="waveslim")[7:8]
     y[[j]] <- out$W
     x <- out$V
   }
@@ -121,8 +122,6 @@ imodwt <- function(y)
   if(is.null(ctmp) || all(ctmp != "modwt"))
     stop("argument `y' is not of class \"modwt\"")
 
-  ##if(attributes(y)$boundary != "periodic")
-  ##  stop("Invalid boundary rule in imodwt")
   J <- length(y) - 1
 
   dict <- wave.filter(attributes(y)$wavelet)
@@ -142,9 +141,10 @@ imodwt <- function(y)
   for(j in J:1) {
     jj <- paste("d", j, sep="")
     X <- .C("imodwt", as.double(y[[jj]]), as.double(X), N, as.integer(j), 
-            L, ht, gt, out=XX)$out
+            L, ht, gt, out=XX, PACKAGE="waveslim")$out
   }
-  return(X)
+  if(attr(y, "boundary") == "reflection") return(X[1:(N/2)])
+  else return(X)
 }
 
 brick.wall <- function(x, wf, method="modwt")
@@ -174,12 +174,10 @@ phase.shift <- function(z, wf, inv=FALSE)
   if(!inv) {
     for(j in 1:J) {
       ph <- round(2^(j-1) * (coe(g) + coe(h)) - coe(g), 0)
-      print(ph)
       Nj <- length(z[[j]])
       z[[j]] <- c(z[[j]][(ph+1):Nj], z[[j]][1:ph])
     }
     ph <- round((2^J-1) * coe(g), 0)
-    print(ph)
     J <- J + 1
     z[[J]] <- c(z[[J]][(ph+1):Nj], z[[J]][1:ph])
   } else {
@@ -190,7 +188,7 @@ phase.shift <- function(z, wf, inv=FALSE)
     }
     ph <- round((2^J-1) * coe(g), 0)
     J <- J + 1
-    z[[J]] <- c(z[[j]][(Nj-ph+1):Nj], z[[j]][1:(Nj-ph)])
+    z[[J]] <- c(z[[J]][(Nj-ph+1):Nj], z[[J]][1:(Nj-ph)])
   }
   return(z)
 }

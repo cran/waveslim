@@ -31,7 +31,7 @@ japan.nomean <-
   ts(apply(matrix(unlist(japan.mra[-(J+1)]), ncol=J, byrow=FALSE), 1, sum),
      start=1955, freq=4)
 japan.nomean2 <- ts(japan.nomean[42:169], start=1965.25, freq=4)
-plot.ts(japan.nomean2)
+plot(japan.nomean2, type="l")
 japan.dwpt <- dwpt(japan.nomean2, wf, 6)
 japan.basis <-
   ortho.basis(portmanteau.test(japan.dwpt, p=0.01, type="other"))

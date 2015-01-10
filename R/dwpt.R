@@ -1,8 +1,7 @@
-dwpt <- function(x, wf="la8", n.levels=4, boundary="periodic")
-{
+dwpt <- function(x, wf="la8", n.levels=4, boundary="periodic") {
   N <- length(x)
   J <- n.levels
-  if(log(N, 2) != trunc(log(N, 2)))
+  if(N/2^J != trunc(N/2^J))
     stop("Sample size is not a power of 2")
   if(2^J > N)
     stop("wavelet transform exceeds sample size in dwt")
@@ -28,13 +27,13 @@ dwpt <- function(x, wf="la8", n.levels=4, boundary="periodic")
       W <- V <- numeric(N/2^j)
       if(n %% 2 == 0) {
         z <- .C("dwt", as.double(x), as.integer(N/2^(j-1)), L, h, g, 
-	  W=as.double(W), V=as.double(V))
+	  W=as.double(W), V=as.double(V), PACKAGE="waveslim")
         y[[jj + 2*n + 1]] <- z$W
         y[[jj + 2*n]] <- z$V
       }
       else {
         z <- .C("dwt", as.double(x), as.integer(N/2^(j-1)), L, h, g,
-                W = as.double(W), V = as.double(V))
+                W=as.double(W), V=as.double(V), PACKAGE="waveslim")
         y[[jj + 2*n]] <- z$W
         y[[jj + 2*n + 1 ]] <- z$V
       }
@@ -66,10 +65,12 @@ idwpt <- function(y, y.basis)
         XX <- numeric(2 * m)
         if(floor((n-a)/2) %% 2 == 0)
           X <- .C("idwt", as.double(y[[n+1]]), as.double(y[[n]]),
-                  as.integer(m), L, h, g, out = as.double(XX))$out
+                  as.integer(m), L, h, g, out=as.double(XX),
+                  PACKAGE="waveslim")$out
         else
           X <- .C("idwt", as.double(y[[n]]), as.double(y[[n+1]]), 
-                  as.integer(m), L, h, g, out = as.double(XX))$out
+                  as.integer(m), L, h, g, out=as.double(XX),
+                  PACKAGE="waveslim")$out
         if(j != 1) {
           y[[a-(b-a+1)/2 + (n-a)/2]] <- X
           y.basis[[a-(b-a+1)/2 + (n-a)/2]] <- 1
@@ -121,7 +122,7 @@ ortho.basis <- function(xtree) {
     for(j in i:J) {
       if(i == 2) X[[j]] <- xtree[rep(1:J, 2^(1:J)) == j]
         X[[j]] <- X[[j]] + 2 * c(apply(matrix(xtree[rep(1:J, 2^(1:J)) == i-1]),
-          1, rep, 2^(j-i+1)))
+                                       1, rep, 2^(j-i+1)))
     }
   }
   X[[J]][X[[J]] == 0] <- 1
@@ -201,13 +202,13 @@ modwpt <- function(x, wf="la8", n.levels=4, boundary="periodic")
         x <- y[[(1:yn)[crystals1 == j-1][index]]]
       if(n %% 2 == 0) {
         z <- .C("modwt", as.double(x), N, as.integer(j), L, ht, gt, 
-                W = W, V = V)[7:8]
+                W = W, V = V, PACKAGE = "waveslim")[7:8]
         y[[jj + 2*n + 1]] <- z$W
         y[[jj + 2*n]] <- z$V
       }
       else {
         z <- .C("modwt", as.double(x), N, as.integer(j), L, ht, gt, 
-                W = W, V = V)[7:8]
+                W = W, V = V, PACKAGE = "waveslim")[7:8]
         y[[jj + 2*n]] <- z$W
         y[[jj + 2*n + 1 ]] <- z$V
       }
@@ -311,13 +312,6 @@ cpgram.test <- function(y, p=0.05, taper=0.1)
   return(test)
 }
 
-my.acf <- function(x)
-{
-  n <- length(x)
-  x <- c(x, rep(0, n))
-  Re(fft(Mod(fft(x))^2, inv = TRUE)/2/n^2)[1:n]
-}
-
 portmanteau.test <- function(y, p = 0.05, type = "Box-Pierce")
 {
   K <- length(y)
@@ -338,3 +332,4 @@ portmanteau.test <- function(y, p = 0.05, type = "Box-Pierce")
   }
   return(test)
 }
+

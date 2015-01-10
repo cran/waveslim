@@ -6,6 +6,8 @@
 \alias{sure.thresh}
 \alias{universal.thresh}
 \alias{universal.thresh.modwt}
+\alias{bishrink}
+\alias{soft}
 \title{Wavelet Shrinkage via Thresholding}
 \description{
   Perform wavelet shrinkage using data-analytic, hybrid SURE, manual,
@@ -23,16 +25,17 @@ universal.thresh.modwt(wc, max.level = 4, hard = TRUE)
   \item{wc}{wavelet coefficients}
   \item{alpha}{level of the hypothesis tests}
   \item{max.level}{maximum level of coefficients to be affected by threshold}
-  \item{verbose}{if \code{verbose=T} then information is printed to the screen}
+  \item{verbose}{if \code{verbose=TRUE} then information is printed to
+    the screen} 
   \item{value}{threshold value (only utilized in \code{manual.thresh})}
   \item{hard}{Boolean value, if \code{hard=F} then soft thresholding is used}
   \item{seed}{sets random seed (only utilized in \code{hybrid.thresh})}
-  \item{return.thresh}{if \code{return.thresh=T} then the vector of
+  \item{return.thresh}{if \code{return.thresh=TRUE} then the vector of
     threshold values is returned, otherwise the surviving wavelet
     coefficients are returned}
 }
 \value{
-  The default output is a list structure, the same length as was inpuTRUE,
+  The default output is a list structure, the same length as was input,
   containing only those wavelet coefficients surviving the threshold.
 }
 \details{
