@@ -61,7 +61,9 @@
 ## Easy check to see if it works...
 x <- rnorm(32)
 x.mra <- mra(x)
+## IGNORE_RDIFF_BEGIN
 sum(x - apply(matrix(unlist(x.mra), nrow=32), 1, sum))^2
+## IGNORE_RDIFF_END
 
 ## Figure 4.19 in Gencay, Selcuk and Whitcher (2001)
 data(ibm)     

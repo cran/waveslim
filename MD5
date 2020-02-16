@@ -1,4 +1,4 @@
-362b64d248ce4fcf62399799878494c7 *DESCRIPTION
+709e5f5af9690b37660b135d495ab735 *DESCRIPTION
 bb6b0bef936515398c182c6d291f0fe7 *LICENSE
 65fb382ba01267140fcc7cd03b90f602 *NAMESPACE
 ee7726906084ed79b7bee4ec34b86bd9 *R/Anton.R
@@ -121,7 +121,7 @@ b8de31b2a5eb9d3b4b941b9252cf13df *man/jumpsine.Rd
 92bc4809e9418be1b552e34a5e8e09b2 *man/modwt.Rd
 79f054d612bf4cc3797f833a0b12307e *man/mra.2d.Rd
 1e1a9f9ed599913fda54a3e6a2bc49ef *man/mra.3d.Rd
-8c9e3efc0189015d7dfe57f923934758 *man/mra.Rd
+9e48bf90c6141e69c751d627a22babfb *man/mra.Rd
 c147302075bd3e33f5845eb9a20c366a *man/mult.loc.Rd
 da7e62d31fc8ad46677414879f03a717 *man/my.acf.Rd
 f2acdb3941fbec392ec5b0623661df3e *man/nile.Rd
@@ -155,4 +155,4 @@ e5e9fe7f25d3bf5398ecdbdda7f6394c *man/up.sample.Rd
 f918148a80522af7bb819df3faf31fea *src/dwt2.c
 2822bf88a86280390e5110cb584e1ccf *src/dwt3.c
 ef0296f98c4e377ee91ec48de1544acc *src/hosking.c
-2dd224f9e9acac28c94af3846f5090d6 *tests/Examples/waveslim-Ex.Rout.save
+d3a59af37d69f4375c31adce9e6794b8 *tests/Examples/waveslim-Ex.Rout.save

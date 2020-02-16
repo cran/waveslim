@@ -1,7 +1,7 @@
 
-R Under development (unstable) (2015-01-07 r67351) -- "Unsuffered Consequences"
-Copyright (C) 2015 The R Foundation for Statistical Computing
-Platform: x86_64-unknown-linux-gnu (64-bit)
+R Under development (unstable) (2020-02-16 r77809) -- "Unsuffered Consequences"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -22,10 +22,11 @@ Type 'q()' to quit R.
 > options(warn = 1)
 > library('waveslim')
 
-waveslim: Wavelet Method for 1/2/3D Signals (version = 1.7.5)
+waveslim: Wavelet Method for 1/2/3D Signals (version = 1.7.5.2)
 
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
 > cleanEx()
 > nameEx("Dualtree")
 > ### * Dualtree
@@ -730,8 +731,10 @@ $lpf[[2]]
 > ## Easy check to see if it works...
 > x <- rnorm(32)
 > x.mra <- mra(x)
+> ## IGNORE_RDIFF_BEGIN
 > sum(x - apply(matrix(unlist(x.mra), nrow=32), 1, sum))^2
 [1] 2.242776e-29
+> ## IGNORE_RDIFF_END
 > 
 > ## Figure 4.19 in Gencay, Selcuk and Whitcher (2001)
 > data(ibm)     
@@ -1109,9 +1112,10 @@ Warning in sqrt(n - 3) : NaNs produced
 > 
 > ### * <FOOTER>
 > ###
+> cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  7.446 0.101 7.536 0 0 
+Time elapsed:  11.469 0.47 12.06 0 0 
 > grDevices::dev.off()
 null device 
           1 
