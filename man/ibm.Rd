@@ -13,7 +13,4 @@
   \emph{Time Series Analysis: Forecasting and Control},
   Holden Day, San Francisco, 2 edition.
 }
-\references{
-  \url{http://www-personal.buseco.monash.edu.au/~hyndman/TSDL/}
-}
 \keyword{datasets}
