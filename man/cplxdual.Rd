@@ -13,9 +13,9 @@ icplxdual2D(w, J, Fsf, sf)
   \item{x}{2D array.}
   \item{w}{wavelet coefficients.}
   \item{J}{number of stages.}
-  \item{Faf}{first stage analysis filters for tree \eqn{i}.}
-  \item{af}{analysis filters for the remaining stages on tree \eqn{i}.}
-  \item{Fsf}{last stage synthesis filters for tree \eqn{i}.}
+  \item{Faf}{first stage analysis filters for tree i.}
+  \item{af}{analysis filters for the remaining stages on tree i.}
+  \item{Fsf}{last stage synthesis filters for tree i.}
   \item{sf}{synthesis filters for the preceeding stages.}
 }
 %\details{}
@@ -27,10 +27,6 @@ icplxdual2D(w, J, Fsf, sf)
     \eqn{d2=1,2,3} (orientations).}
   For the synthesis of \code{w}, the output is 
   \item{y}{output signal.}
-}
-\references{
-  WAVELET SOFTWARE AT POLYTECHNIC UNIVERSITY, BROOKLYN, NY\cr
-  \url{http://eeweb.poly.edu/iselesni/WaveletSoftware/}
 }
 \seealso{
   \code{\link{FSfarras}}, \code{\link{farras}}, \code{\link{afb2D}}, 

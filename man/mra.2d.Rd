@@ -13,7 +13,7 @@
     the same) for \code{method="dwt"}.}
   \item{wf}{Name of the wavelet filter to use in the decomposition.  By
     default this is set to \code{"la8"}, the Daubechies orthonormal
-    compactly supported wavelet of length \eqn{L=8} least asymmetric
+    compactly supported wavelet of length L=8 least asymmetric
     family.}
   \item{J}{Specifies the depth of the decomposition.  This must be a
     number less than or equal to
@@ -27,11 +27,11 @@
 }
 \value{
   Basically, a list with the following components
-  \item{LH?}{Wavelet detail image in the horizontal direction.}
-  \item{HL?}{Wavelet detail image in the vertical direction.}
-  \item{HH?}{Wavelet detail image in the diagonal direction.}
-  \item{LL\eqn{J}}{Wavelet smooth image at the coarsest resolution.}
-  \item{\eqn{J}}{Depth of the wavelet transform.}
+  \item{LHJ}{Wavelet detail image in the horizontal direction.}
+  \item{HLJ}{Wavelet detail image in the vertical direction.}
+  \item{HHJ}{Wavelet detail image in the diagonal direction.}
+  \item{LLJ}{Wavelet smooth image at the coarsest resolution.}
+  \item{J}{Depth of the wavelet transform.}
   \item{wavelet}{Name of the wavelet filter used.}
   \item{boundary}{How the boundaries were handled.}
 }
